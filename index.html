@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site com Vídeo e Botões</title>
+  <!-- CDN do Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" />
+  <!-- Importando a fonte Lora -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      background-color: #000; /* Fundo totalmente preto */
+      font-family: 'Lora', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    /* Container do vídeo para desktop */
+    .video-bg-container {
+      position: fixed;
+      top: 25%;
+      left: 50%;
+      width: 50vw;
+      height: 50vh;
+      transform: translate(-50%, -50%);
+      overflow: hidden;
+      z-index: -1;
+    }
+    .video-bg-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: #000;
+    }
+    /* Container dos botões */
+    .buttons-container {
+      position: fixed;
+      top: 50%; /* Ajuste a posição vertical conforme necessário */
+      left: 50%;
+      transform: translate(-50%, 0);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Alinha os itens à esquerda na caixa */
+      gap: 10px;
+      z-index: 1;
+      background-color: rgba(0, 0, 0, 0.6); /* Caixa semi-transparente */
+      padding: 20px;
+      border-radius: 16px; /* Bordas arredondadas */
+    }
+    .buttons-container a {
+      text-decoration: none;
+      white-space: nowrap; /* Evita quebra de texto */
+    }
+    .button {
+      background-color: #fff;
+      color: #111;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px; /* Botões com cantos arredondados */
+      font-size: 1em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+    }
+    .button:hover {
+      background-color: #ddd;
+    }
+    .button i {
+      font-size: 1.2em;
+    }
+    /* Ajuste para dispositivos móveis */
+    @media (max-width: 800px) {
+      .video-bg-container {
+        width: 150vw;
+        height: 150vh;
+      }
+      .buttons-container {
+        top: calc(100vh - 400px); /* Posiciona os botões mais acima em mobile */
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Vídeo de fundo -->
+  <div class="video-bg-container">
+    <video id="bgVideo" autoplay muted>
+      <source src="video-fundo.mp4" type="video/mp4">
+      Seu navegador não suporta o elemento de vídeo.
+    </video>
+  </div>
+  
+  <!-- Container dos botões -->
+  <div class="buttons-container">
+    <!-- Botão 1: Catálogo (redireciona para catalogo.html) -->
+    <a href="catalogo.html" class="button">Conheça nossos produtos</a>
+    <!-- Botão 2: WhatsApp -->
+    <a href="https://wa.me/5537999139844" class="button">
+      <i class="fab fa-whatsapp" style="color: green;"></i> Converse com nosso atendente
+    </a>
+    <!-- Botão 3: Instagram -->
+    <a href="https://www.instagram.com/alvinhogoncalves1?igsh=cGJkbWJuN2ltcDFv" class="button">
+      <i class="fab fa-instagram" style="color: red;"></i> Conheça nossa página
+    </a>
+  </div>
+  
+  <script>
+    // Ao terminar, o vídeo congela no último frame
+    const bgVideo = document.getElementById('bgVideo');
+    bgVideo.addEventListener('ended', () => {
+      bgVideo.currentTime = bgVideo.duration - 0.1;
+      bgVideo.pause();
+    });
+  </script>
+</body>
+</html>
